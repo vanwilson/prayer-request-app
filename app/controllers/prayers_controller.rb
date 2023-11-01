@@ -25,4 +25,10 @@ class PrayersController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @prayer = Prayer.find_by(id: params[:id])
+    @prayer.destroy
+    render json: { message: "Prayer destroyed successfully" }
+  end
 end
