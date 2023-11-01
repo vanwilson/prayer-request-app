@@ -3,4 +3,12 @@ class PrayersController < ApplicationController
     @prayers = Prayer.all
     render :index
   end
+
+  def create
+    @prayer = Prayer.create(
+      title: params[:title],
+      body: params[:body],
+    )
+    render :show
+  end
 end
