@@ -16,4 +16,13 @@ class PrayersController < ApplicationController
     @prayer = Prayer.find_by(id: params[:id])
     render :show
   end
+
+  def update
+    @prayer = Prayer.find_by(id: params[:id])
+    @prayer.update(
+      title: params[:title] || @prayer.title,
+      body: params[:body] || @prayer.body,
+    )
+    render :show
+  end
 end
