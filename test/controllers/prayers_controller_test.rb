@@ -15,4 +15,12 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/prayers/#{Prayer.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["id", "title", "body", "created_at", "updated_at"], data.keys
+  end
 end
