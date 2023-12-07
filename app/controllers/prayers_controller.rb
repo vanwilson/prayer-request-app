@@ -6,7 +6,10 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.create(
+      user_id: params[:user_id],
+      pray_for: params[:pray_for],
       title: params[:title],
+      type: params[:type],
       body: params[:body],
     )
     render :show
@@ -20,7 +23,9 @@ class PrayersController < ApplicationController
   def update
     @prayer = Prayer.find_by(id: params[:id])
     @prayer.update(
+      pray_for: params[:pray_for] || @prayer.pray_for,
       title: params[:title] || @prayer.title,
+      type: params[:type] || @prayer.type,
       body: params[:body] || @prayer.body,
     )
     render :show
@@ -29,6 +34,6 @@ class PrayersController < ApplicationController
   def destroy
     @prayer = Prayer.find_by(id: params[:id])
     @prayer.destroy
-    render json: { message: "Prayer destroyed successfully" }
+    render json: { message: "Prayer successfully deleted" }
   end
 end
