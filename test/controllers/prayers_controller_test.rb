@@ -11,7 +11,7 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "Prayer.count", 1 do
-      post "/prayers.json", params: { pray_for: "dad", title: "sick", type: "need", body: "prayer" }
+      post "/prayers.json", params: { pray_for: "dad", title: "sick", prayer_type: "answered", body: "prayer" }
       assert_response 200
     end
   end
@@ -21,7 +21,7 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal ["id", "user_id", "pray_for", "title", "type", "body", "created_at", "updated_at"], data.keys
+    assert_equal ["id", "user_id", "pray_for", "title", "prayer_type", "body", "created_at", "updated_at"], data.keys
   end
 
   test "update" do

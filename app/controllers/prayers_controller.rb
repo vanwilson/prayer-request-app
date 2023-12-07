@@ -9,7 +9,7 @@ class PrayersController < ApplicationController
       user_id: params[:user_id],
       pray_for: params[:pray_for],
       title: params[:title],
-      type: params[:type],
+      prayer_type: params[:prayer_type],
       body: params[:body],
     )
     render :show
@@ -25,7 +25,7 @@ class PrayersController < ApplicationController
     @prayer.update(
       pray_for: params[:pray_for] || @prayer.pray_for,
       title: params[:title] || @prayer.title,
-      type: params[:type] || @prayer.type,
+      prayer_type: params[:prayer_type] || @prayer.prayer_type,
       body: params[:body] || @prayer.body,
     )
     render :show
