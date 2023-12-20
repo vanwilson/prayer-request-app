@@ -23,6 +23,7 @@ class PrayersController < ApplicationController
   def update
     @prayer = Prayer.find_by(id: params[:id])
     @prayer.update(
+      user_id: params[:user_id] || @prayer.user_id,
       pray_for: params[:pray_for] || @prayer.pray_for,
       title: params[:title] || @prayer.title,
       prayer_type: params[:prayer_type] || @prayer.prayer_type,
