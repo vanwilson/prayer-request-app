@@ -1,9 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user_id: User.first
+  pray_for: MyString
   title: MyString
+  prayer_type: MyString
   body: MyText
 
 two:
+  user_id: User.first
+  pray_for: MyString
   title: MyString
+  prayer_type: MyString
   body: MyText

@@ -9,9 +9,10 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
     assert_equal Prayer.count, data.length
   end
 
+  # test doesn't work but create action does IRL
   test "create" do
     assert_difference "Prayer.count", 1 do
-      post "/prayers.json", params: { pray_for: "dad", title: "sick", prayer_type: "answered", body: "prayer" }
+      post "/prayers.json", params: { user_id: 1, pray_for: "dad", title: "sick", prayer_type: "answered", body: "prayer" }
       assert_response 200
     end
   end
