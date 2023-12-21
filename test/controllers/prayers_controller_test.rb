@@ -3,7 +3,7 @@ require "test_helper"
 class PrayersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create(email: "test@test.com", password: "password")
-    @order = Prayer.create(user_id: @user.id)
+    @prayer = Prayer.create(user_id: @user.id, pray_for: "person", title: "needy", prayer_type: "need", body: "prayer")
     post "/sessions.json", params: { email: "test@test.com", password: "password" }
     data = JSON.parse(response.body)
     @jwt = data["jwt"]
@@ -36,7 +36,7 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
 
   test "update" do
     prayer = Prayer.first
-    patch "/prayers/#{prayer.id}.json",
+    patch "/prayers/#{@prayer.id}.json",
           headers: { "Authorization" => "Bearer #{@jwt}" },
           params: { title: "Updated title" }
     assert_response 200
