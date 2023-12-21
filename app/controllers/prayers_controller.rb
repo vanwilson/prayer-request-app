@@ -1,4 +1,6 @@
 class PrayersController < ApplicationController
+  before_action :authenticate_user
+
   def index
     @prayers = Prayer.all
     render :index
@@ -6,7 +8,7 @@ class PrayersController < ApplicationController
 
   def create
     @prayer = Prayer.create(
-      user_id: params[:user_id],
+      user_id: current_user.id,
       pray_for: params[:pray_for],
       title: params[:title],
       prayer_type: params[:prayer_type],
@@ -23,7 +25,6 @@ class PrayersController < ApplicationController
   def update
     @prayer = Prayer.find_by(id: params[:id])
     @prayer.update(
-      user_id: params[:user_id] || @prayer.user_id,
       pray_for: params[:pray_for] || @prayer.pray_for,
       title: params[:title] || @prayer.title,
       prayer_type: params[:prayer_type] || @prayer.prayer_type,
