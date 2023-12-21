@@ -14,7 +14,11 @@ class PrayersController < ApplicationController
       prayer_type: params[:prayer_type],
       body: params[:body],
     )
-    render :show
+    if @prayer.valid?
+      render :show
+    else
+      render json: { message: "Please fill out all fields." }
+    end
   end
 
   def show
@@ -23,14 +27,18 @@ class PrayersController < ApplicationController
   end
 
   def update
-    @prayer = Prayer.find_by(id: params[:id])
+    @prayer = current_user.prayers.find_by(id: params[:id])
     @prayer.update(
       pray_for: params[:pray_for] || @prayer.pray_for,
       title: params[:title] || @prayer.title,
       prayer_type: params[:prayer_type] || @prayer.prayer_type,
       body: params[:body] || @prayer.body,
     )
-    render :show
+    if @prayer.valid?
+      render :show
+    else
+      render json: { errors: @prayer.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
