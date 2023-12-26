@@ -3,6 +3,12 @@ class PrayersController < ApplicationController
 
   def index
     @prayers = Prayer.all
+
+    if params[:id]
+      user = User.find_by(id: params[:id])
+      @prayers = user.prayers
+    end
+
     render :index
   end
 
