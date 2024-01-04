@@ -1,24 +1,35 @@
-# README
+# Prayer Request App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails app allows users to share prayer requests. As I searched for a quality mobile app for prayer, I realized that none of the apps were simplified enough for any church member to share prayer requests directly with their church family. I created a backend using Ruby on Rails that utilizes two simple models: user and prayer. 
 
-Things you may want to cover:
+Users can sign up for an account, log in, and view all prayer requests in the community filtering different prayer types.
+Users can create and edit their prayer requests.
 
-* Ruby version
+Technologies include Ruby on Rails backend and PostgreSQL database.
 
-* System dependencies
+## Installation
 
-* Configuration
+```bash
+git clone https://github.com/vanwilson/prayer-request-app
+```
 
-* Database creation
+```bash
+bundle install
+rails db:create db:migrate db:seed
+```
 
-* Database initialization
+## Usage
 
-* How to run the test suite
+```bash
+rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+You can run all the API tests from the `test` folder by running: 
 
-* Deployment instructions
+```bash
+rails test
+```
 
-* ...
+## Roadmap
+
+List any ideas you plan on implementing in the future.
