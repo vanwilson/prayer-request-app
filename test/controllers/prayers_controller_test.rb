@@ -17,7 +17,6 @@ class PrayersControllerTest < ActionDispatch::IntegrationTest
     assert_equal Prayer.count, data.length
   end
 
-  # test doesn't work but create action does IRL
   test "create" do
     assert_difference "Prayer.count", 1 do
       post "/prayers.json", headers: { "Authorization" => "Bearer #{@jwt}" },
